@@ -12,26 +12,28 @@ export class BaseResponseInterceptor implements NestInterceptor {
       map((data) => {
         return { success: true, data };
       }),
-      catchError((error: any) => {
-        return throwError(() => {
-          if (error instanceof HttpException) {
-            throw new HttpException(
-              {
-                success: false,
-                data: {
-                  message: error.message,
-                  statusCode: error.getStatus(),
-                },
-              },
-              error.getStatus(),
-            );
-          } else {
-            return throwError(() => {
-              throw error;
-            });
-          }
-        });
+      catchError((error) => {
+        return throwError(() => this.errorHandler(error));
       }),
     );
+  }
+
+  private errorHandler(error: any) {
+    if (error instanceof HttpException) {
+      throw new HttpException(
+        {
+          success: false,
+          data: {
+            message: error.message,
+            statusCode: error.getStatus(),
+          },
+        },
+        error.getStatus(),
+      );
+    } else {
+      return throwError(() => {
+        throw error;
+      });
+    }
   }
 }
