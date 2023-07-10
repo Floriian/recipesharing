@@ -5,6 +5,7 @@ import { passportJwtSecret } from 'jwks-rsa';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { IAuth0Config } from '../../config';
 import { AUTH_CONFIG } from '../../constants';
+import { Auth0Payload } from '../../types';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private configService: ConfigService) {
@@ -23,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       algorithms: ['RS256'],
     });
   }
-  validate(payload: unknown) {
+  validate(payload: Auth0Payload) {
     return payload;
   }
 }

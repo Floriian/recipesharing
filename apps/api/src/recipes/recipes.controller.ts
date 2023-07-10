@@ -10,6 +10,7 @@ import {
 import { RecipesService } from './recipes.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { BaseResponseInterceptor } from '../interceptors';
+import { GetUser } from '../decorators';
 
 @Controller('recipes')
 @UseInterceptors(BaseResponseInterceptor)
@@ -18,7 +19,8 @@ export class RecipesController {
 
   @Get()
   @UseGuards(JwtGuard)
-  getRecipes(@Request() request: Request) {
+  getRecipes(@Request() request: Express.Request, @GetUser() user: any) {
+    console.log(user);
     return {
       recipes: 'recipe',
     };
