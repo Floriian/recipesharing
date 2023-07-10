@@ -1,8 +1,18 @@
-import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotImplementedException,
+  Post,
+  Request,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { BaseResponseInterceptor } from '../interceptors';
 
 @Controller('recipes')
+@UseInterceptors(BaseResponseInterceptor)
 export class RecipesController {
   constructor(private readonly recipesService: RecipesService) {}
 
@@ -12,5 +22,11 @@ export class RecipesController {
     return {
       recipes: 'recipe',
     };
+  }
+
+  @UseGuards(JwtGuard)
+  @Post()
+  createRecipe() {
+    throw new NotImplementedException('');
   }
 }
