@@ -1,4 +1,4 @@
-import { Ingredient } from "./Ingredient";
+import { IIngredient as Ingredient } from "./Ingredient";
 
 export interface IngredientServiceActions {
   getIngredients(): Promise<Ingredient[]> | Ingredient[];
