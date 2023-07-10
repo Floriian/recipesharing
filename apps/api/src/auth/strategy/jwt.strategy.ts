@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
-import { ExtractJwt } from 'passport-jwt';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { IAuth0Config } from '../../config';
+import { AUTH_CONFIG } from '../../constants';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private configService: ConfigService) {
@@ -12,13 +13,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${configService.get(
-          'AUTH0_ISSUER_BASE_URL',
-        )}}.well-known/jwks.json`,
+        jwksUri: `${
+          configService.get<IAuth0Config>(AUTH_CONFIG).AUTH0_ISSUER_URL
+        }.well-known/jwks.json`,
       }),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      audience: configService.get('AUTH0_AUDIENCE'),
-      issuer: configService.get('AUTH0_ISSUER_BASE_URL'),
+      audience: configService.get<IAuth0Config>(AUTH_CONFIG).AUTH0_AUDIENCE,
+      issuer: configService.get<IAuth0Config>(AUTH_CONFIG).AUTH0_ISSUER_URL,
       algorithms: ['RS256'],
     });
   }
