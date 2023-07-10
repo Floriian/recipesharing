@@ -2,7 +2,7 @@
   "name": "@recipe-sharing/types",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,5 +12,8 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
   }
 }
