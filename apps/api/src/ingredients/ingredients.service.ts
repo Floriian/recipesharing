@@ -1,18 +1,54 @@
 import { Injectable } from '@nestjs/common';
-import { IIngredient, IngredientServiceActions } from '@recipe-sharing/types';
+import { InjectModel } from '@nestjs/mongoose';
+import {
+  CreateIngredientDto,
+  IngredientServiceActions,
+  UpdateIngredientDto,
+} from '@recipe-sharing/types';
+import { Ingredient, IngredientModel } from './schema/Ingredient.schema';
+import { IngredientNotFoundException } from './exceptions';
 
 @Injectable()
 export class IngredientsService implements IngredientServiceActions {
-  getIngredients(): IIngredient[] | Promise<IIngredient[]> {
-    throw new Error('Method not implemented.');
+  constructor(
+    @InjectModel(Ingredient.name)
+    private readonly ingredientModel: IngredientModel,
+  ) {}
+  async getIngredients(): Promise<Ingredient[]> {
+    return await this.ingredientModel.find();
   }
-  getIngredient(name: string): IIngredient | Promise<IIngredient> {
-    throw new Error('Method not implemented.');
+  async getIngredient(name: string): Promise<Ingredient> {
+    const ingredient = await this.ingredientModel.findOne({ name });
+    if (!ingredient) throw new IngredientNotFoundException();
+    return ingredient;
   }
-  updateIngredient(id: string): IIngredient | Promise<IIngredient> {
-    throw new Error('Method not implemented.');
+  async createIngredient(dto: CreateIngredientDto): Promise<Ingredient> {
+    const newIngredient = new Ingredient();
+    newIngredient.name = dto.name;
+    newIngredient.amount = dto.amount;
+
+    await this.ingredientModel.create(newIngredient);
+    return newIngredient;
   }
-  deleteIngredient(id: string): boolean | Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async updateIngredient(
+    id: string,
+    dto: UpdateIngredientDto,
+  ): Promise<Ingredient> {
+    const ingredient = await this.ingredientModel.findById(id);
+    if (!ingredient) throw new IngredientNotFoundException();
+
+    const amount = dto.amount ? dto.amount : ingredient.amount;
+    const name = dto.name ? dto.name : ingredient.name;
+
+    return await this.ingredientModel.findOneAndUpdate(
+      { _id: id },
+      { $set: { name, amount } },
+    );
+  }
+  async deleteIngredient(id: string) {
+    const ingredient = await this.ingredientModel.findById(id);
+    if (!ingredient) throw new IngredientNotFoundException();
+
+    return await this.ingredientModel.findOneAndDelete({ _id: id });
   }
 }

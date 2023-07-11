@@ -1,8 +1,10 @@
-import { IIngredient as Ingredient } from "./Ingredient";
+import { CreateIngredientDto } from "./CreateIngredient.dto";
+import { UpdateIngredientDto } from "./UpdateIngredient.dto";
 
 export interface IngredientServiceActions {
-  getIngredients(): Promise<Ingredient[]> | Ingredient[];
-  getIngredient(name: string): Promise<Ingredient> | Ingredient;
-  updateIngredient(id: string): Promise<Ingredient> | Ingredient;
-  deleteIngredient(id: string): Promise<boolean> | boolean;
+  getIngredients();
+  getIngredient(name: string);
+  createIngredient(dto: CreateIngredientDto);
+  updateIngredient(id: string, dto: UpdateIngredientDto);
+  deleteIngredient(id: string);
 }
