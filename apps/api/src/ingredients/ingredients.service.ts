@@ -17,8 +17,8 @@ export class IngredientsService implements IngredientServiceActions {
   async getIngredients(): Promise<Ingredient[]> {
     return await this.ingredientModel.find();
   }
-  async getIngredient(name: string): Promise<Ingredient> {
-    const ingredient = await this.ingredientModel.findOne({ name });
+  async getIngredient(name: string): Promise<Ingredient[]> {
+    const ingredient = await this.ingredientModel.find({ name });
     if (!ingredient) throw new IngredientNotFoundException();
     return ingredient;
   }
