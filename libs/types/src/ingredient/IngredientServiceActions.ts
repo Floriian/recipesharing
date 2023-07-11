@@ -1,6 +1,5 @@
 import { CreateIngredientDto } from "./CreateIngredient.dto";
 import { UpdateIngredientDto } from "./UpdateIngredient.dto";
-
 export interface IngredientServiceActions {
   getIngredients();
   getIngredient(name: string);

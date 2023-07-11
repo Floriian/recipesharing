@@ -1,11 +1,11 @@
 {
   "name": "@recipe-sharing/types",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npx tsc --watch --preserveWatchOutput\" \"nodemon -q dist/index.js\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,8 @@
     "class-validator": "^0.14.0"
   },
   "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }

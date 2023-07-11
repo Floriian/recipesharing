@@ -1,13 +1,21 @@
-import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { IngredientsService } from './ingredients.service';
 import {
   CreateIngredientDto,
   IngredientServiceActions,
   UpdateIngredientDto,
 } from '@recipe-sharing/types';
-import { IngredientsService } from './ingredients.service';
 
 @Controller('ingredients')
-export class IngredientsController implements IngredientServiceActions {
+export class IngredientsController {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
   @Get()
@@ -17,19 +25,11 @@ export class IngredientsController implements IngredientServiceActions {
 
   @Get(':name')
   getIngredient(@Param('name') name: string) {
-    return this.ingredientsService.getIngredient(name);
+    return this.getIngredient(name);
   }
 
   @Post()
-  createIngredient(dto: CreateIngredientDto) {
-    return this.ingredientsService.createIngredient(dto);
-  }
-  @Patch(':id')
-  updateIngredient(@Param('id') id: string, dto: UpdateIngredientDto) {
-    return this.ingredientsService.updateIngredient(id, dto);
-  }
-  @Delete(':id')
-  deleteIngredient(@Param('id') id: string) {
-    return this.ingredientsService.deleteIngredient(id);
+  createIngredeint(@Body() dto: CreateIngredientDto) {
+    return this.createIngredeint(dto);
   }
 }
