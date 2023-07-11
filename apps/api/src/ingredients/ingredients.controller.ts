@@ -15,7 +15,7 @@ import {
 } from '@recipe-sharing/types';
 
 @Controller('ingredients')
-export class IngredientsController {
+export class IngredientsController implements IngredientServiceActions {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
   @Get()
@@ -25,11 +25,21 @@ export class IngredientsController {
 
   @Get(':name')
   getIngredient(@Param('name') name: string) {
-    return this.getIngredient(name);
+    return this.ingredientsService.getIngredient(name);
   }
 
   @Post()
-  createIngredeint(@Body() dto: CreateIngredientDto) {
-    return this.createIngredeint(dto);
+  createIngredient(@Body() dto: CreateIngredientDto) {
+    return this.ingredientsService.createIngredient(dto);
+  }
+
+  @Patch(':id')
+  updateIngredient(@Param('id') id: string, @Body() dto: UpdateIngredientDto) {
+    return this.ingredientsService.updateIngredient(id, dto);
+  }
+
+  @Delete(':id')
+  deleteIngredient(@Param('id') id: string) {
+    return this.ingredientsService.deleteIngredient(id);
   }
 }
