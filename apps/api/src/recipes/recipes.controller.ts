@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 import {
@@ -13,6 +14,7 @@ import {
   RecipeServiceActions,
   UpdateRecipeDto,
 } from '@recipe-sharing/types';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
 @Controller('recipes')
 export class RecipesController implements RecipeServiceActions {
@@ -29,15 +31,19 @@ export class RecipesController implements RecipeServiceActions {
   }
 
   @Post()
+  @UseGuards(JwtGuard)
   createRecipe(dto: CreateRecipeDto) {
     return this.recipesService.createRecipe(dto);
   }
 
   @Patch(':id')
+  @UseGuards(JwtGuard)
   updateRecipe(@Param('id') id: string, @Body() dto: UpdateRecipeDto) {
     return this.recipesService.updateRecipe(id, dto);
   }
+
   @Delete(':id')
+  @UseGuards(JwtGuard)
   deleteRecipe(@Param('id') id: string) {
     return this.recipesService.deleteRecipe(id);
   }
