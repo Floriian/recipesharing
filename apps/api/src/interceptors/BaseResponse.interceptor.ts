@@ -6,6 +6,9 @@ import {
 } from '@nestjs/common';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
+/**
+ * This interceptor add success field to every response.
+ */
 export class BaseResponseInterceptor implements NestInterceptor {
   intercept(ctx: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
