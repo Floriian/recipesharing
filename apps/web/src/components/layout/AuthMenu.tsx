@@ -7,21 +7,33 @@ import {
   DropdownMenuPortal,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { PersonIcon } from "@radix-ui/react-icons";
 
 export function AuthMenu() {
   const { loginWithRedirect } = useAuth0();
 
-  const onSignInButtonClick = async () => {
-    await loginWithRedirect();
-  };
-
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>PERSON</DropdownMenuTrigger>
+      <DropdownMenuTrigger>
+        <Avatar>
+          <AvatarFallback>
+            <PersonIcon />
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent>
-          <DropdownMenuItem>Sign In</DropdownMenuItem>
-          <DropdownMenuItem>Sign Up</DropdownMenuItem>
+          <DropdownMenuItem
+            className="hover:cursor-pointer"
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            onClick={() => loginWithRedirect()}
+          >
+            Sign In
+          </DropdownMenuItem>
+          <DropdownMenuItem className="hover:cursor-pointer">
+            Sign Up
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenuPortal>
     </DropdownMenu>

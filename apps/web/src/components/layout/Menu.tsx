@@ -18,9 +18,7 @@ export function Menu() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuLink>
-                <Link to="/">Homepage</Link>
-              </NavigationMenuLink>
+              <NavigationMenuLink href="/">Home</NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

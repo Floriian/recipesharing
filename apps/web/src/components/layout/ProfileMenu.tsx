@@ -2,8 +2,16 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { profileMenuRoutes } from "../../utils";
 import { To, useNavigate } from "react-router-dom";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { PersonIcon } from "@radix-ui/react-icons";
 export function ProfileMenu() {
   const { user } = useAuth0();
   const navigate = useNavigate();
@@ -15,29 +23,22 @@ export function ProfileMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        {/* <Avatar.Root className="h-8 w-8 ">
-          <Avatar.Image
-            alt={user?.name}
-            src={user?.picture}
-            className="rounded-full object-cover h-8 w-8"
-          />
-        </Avatar.Root> */}
-        Avataaar
+        <Avatar>
+          <AvatarImage src={user?.picture} />
+          <AvatarFallback>
+            <PersonIcon />
+          </AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent>
           {profileMenuRoutes.map((item, i) => (
-            <DropdownMenuItem
-              key={i}
-              onClick={() => gotoPage(item.path)}
-            >
+            <DropdownMenuItem key={i} onClick={() => gotoPage(item.path)}>
               {item.text}
             </DropdownMenuItem>
           ))}
-          <DropdownMenuSeparator/>
-          <DropdownMenuItem>
-            Logout
-          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenuPortal>
     </DropdownMenu>
