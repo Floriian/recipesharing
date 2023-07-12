@@ -150,6 +150,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.2.14)(react@18.2.0)
+      '@recipe-sharing/types':
+        specifier: workspace:^
+        version: link:../../libs/types
       axios:
         specifier: ^1.4.0
         version: 1.4.0
