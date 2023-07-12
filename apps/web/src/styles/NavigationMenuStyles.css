@@ -1,0 +1,17 @@
+.NavigationMenuRoot {
+    @apply relative flex justify-center w-full z-[1];
+}
+
+.NavigationMenuList {
+    @apply flex justify-center gap-4;
+}
+.NavigationMenuTrigger,
+.NavigationMenuLink {
+  padding: 8px 12px;
+  outline: none;
+  user-select: none;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 4px;
+  font-size: 15px;
+}

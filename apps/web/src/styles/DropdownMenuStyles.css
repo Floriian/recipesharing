@@ -1,0 +1,15 @@
+.DropdownMenuTrigger {
+    @apply rounded-full border-2;
+}
+
+.DropdownMenuContent {
+    @apply bg-white p-1 rounded-md border border-zinc-500 gap-4;
+}
+
+.DropdownMenuItem {
+    @apply p-2 pl-5 pr-5 hover:cursor-pointer hover:bg-green-100 hover:text-black 
+}
+
+.DropdownMenuSeperator {
+    @apply h-[1px] bg-green-500 m-[5px];
+}
