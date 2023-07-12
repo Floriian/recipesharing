@@ -4,10 +4,6 @@ import { ProfileMenu } from "./ProfileMenu";
 import { AuthMenu } from "./AuthMenu";
 
 export function Menu() {
-  const { user, isAuthenticated } = useAuth0();
-  return (
-    <div>
-      {user?.address} {isAuthenticated}
-    </div>
-  );
+  const { isAuthenticated } = useAuth0();
+  return <div>{isAuthenticated ? <ProfileMenu /> : <AuthMenu />}</div>;
 }
