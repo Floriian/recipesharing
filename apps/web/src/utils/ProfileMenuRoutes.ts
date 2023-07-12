@@ -1,4 +1,4 @@
-type ProfileRoutes = {
+export type ProfileRoutes = {
   path?: string;
   text: string;
 };
