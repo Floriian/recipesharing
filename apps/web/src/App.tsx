@@ -11,7 +11,7 @@ export default function App() {
         />
 
         <Route element={<ProfileLayout />} path="/profile">
-          <Route index element={<h1>hello world</h1>} />
+          <Route index element={<></>} />
         </Route>
       </Route>
     </Routes>

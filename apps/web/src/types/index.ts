@@ -1,1 +1,2 @@
-export * from "./ProfileRoutes";
+export * from "./ProfileRoute";
+export * from "./ProfileCardRoute";
