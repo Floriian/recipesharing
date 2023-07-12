@@ -1,6 +1,5 @@
 import React from "react";
 import { profileSideMenuRoutes } from "../../utils/ProfileSideMenuRoutes";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useLocation } from "react-router-dom";
 export function ProfileSideMenu() {
   return (
@@ -12,7 +11,6 @@ export function ProfileSideMenu() {
             className="hover:bg-green-500 w-full text-center cursor-pointer hover:text-black"
           >
             <div>{item.text}</div>
-            <DropdownMenu.Separator className="DropdownMenuSeperator" />
           </li>
         ))}
       </ul>

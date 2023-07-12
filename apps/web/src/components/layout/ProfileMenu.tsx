@@ -1,9 +1,8 @@
 import React from "react";
-import * as Avatar from "@radix-ui/react-avatar";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import { profileMenuRoutes } from "../../utils";
 import { To, useNavigate } from "react-router-dom";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 export function ProfileMenu() {
   const { user } = useAuth0();
@@ -14,33 +13,33 @@ export function ProfileMenu() {
   };
 
   return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="DropdownMenuTrigger">
-        <Avatar.Root className="h-8 w-8 ">
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        {/* <Avatar.Root className="h-8 w-8 ">
           <Avatar.Image
             alt={user?.name}
             src={user?.picture}
             className="rounded-full object-cover h-8 w-8"
           />
-        </Avatar.Root>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className="DropdownMenuContent">
+        </Avatar.Root> */}
+        Avataaar
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuContent>
           {profileMenuRoutes.map((item, i) => (
-            <DropdownMenu.Item
-              className="DropdownMenuItem"
+            <DropdownMenuItem
               key={i}
               onClick={() => gotoPage(item.path)}
             >
               {item.text}
-            </DropdownMenu.Item>
+            </DropdownMenuItem>
           ))}
-          <DropdownMenu.Separator className="DropdownMenuSeperator" />
-          <DropdownMenu.Item className="DropdownMenuItem">
+          <DropdownMenuSeparator/>
+          <DropdownMenuItem>
             Logout
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenuPortal>
+    </DropdownMenu>
   );
 }
