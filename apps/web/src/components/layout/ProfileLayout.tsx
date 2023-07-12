@@ -7,10 +7,5 @@ export function ProfileLayout() {
   const { isAuthenticated } = useAuth0();
   if (!isAuthenticated) return <Navigate to="/" />;
 
-  return (
-    <div className="flex gap-4 w-full justify-center">
-      <ProfileCards />
-      <Outlet />
-    </div>
-  );
+  return <Outlet />;
 }

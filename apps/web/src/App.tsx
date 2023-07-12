@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { ProfileLayout, Layout } from "./components";
+import { ProfileHome } from "./pages/profile";
 export default function App() {
   return (
     <Routes>
@@ -11,7 +12,7 @@ export default function App() {
         />
 
         <Route element={<ProfileLayout />} path="/profile">
-          <Route index element={<></>} />
+          <Route index element={<ProfileHome />} />
         </Route>
       </Route>
     </Routes>
