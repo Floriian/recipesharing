@@ -33,7 +33,11 @@ export function ProfileMenu() {
       <DropdownMenuPortal>
         <DropdownMenuContent>
           {profileMenuRoutes.map((item, i) => (
-            <DropdownMenuItem key={i} onClick={() => gotoPage(item.path)}>
+            <DropdownMenuItem
+              key={i}
+              onClick={() => gotoPage(item.path)}
+              className="cursor-pointer"
+            >
               {item.text}
             </DropdownMenuItem>
           ))}
