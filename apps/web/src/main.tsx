@@ -7,18 +7,18 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Auth0Provider
-      domain="dev-amyd6zt5.us.auth0.com"
-      clientId="QN9QiCytg0wS9N434R7OrWg4JHFc6oNk"
-      issuer="https://dev-amyd6zt5.us.auth0.com/"
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-        audience: "recipesharing_api",
-      }}
-    >
-      <BrowserRouter>
+    <BrowserRouter>
+      <Auth0Provider
+        domain="dev-amyd6zt5.us.auth0.com"
+        clientId="QN9QiCytg0wS9N434R7OrWg4JHFc6oNk"
+        issuer="https://dev-amyd6zt5.us.auth0.com/"
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+          audience: "recipesharing_api",
+        }}
+      >
         <App />
-      </BrowserRouter>
-    </Auth0Provider>
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
