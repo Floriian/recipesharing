@@ -1,11 +1,12 @@
-export type ProfileRoutes = {
-  path?: string;
-  text: string;
-};
+import { ProfileRoute } from "../types/ProfileRoute";
 
-export const profileMenuRoutes: ProfileRoutes[] = [
+export const profileMenuRoutes: ProfileRoute[] = [
   {
     path: "/profile",
     text: "My Profile",
+  },
+  {
+    path: "/profile/new-recipe",
+    text: "Create Recipe",
   },
 ];

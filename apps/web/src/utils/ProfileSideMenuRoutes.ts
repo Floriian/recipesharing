@@ -1,6 +1,6 @@
-import { ProfileRoutes } from ".";
+import { ProfileRoute } from "../types/ProfileRoute";
 
-export const profileSideMenuRoutes: ProfileRoutes[] = [
+export const profileSideMenuRoutes: ProfileRoute[] = [
   {
     text: "Profile",
     path: "/",
