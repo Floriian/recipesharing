@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { RecipesModule } from './recipes/recipes.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { RecipesModule } from './recipes/recipes.module';
     ConfigModule.forRoot(),
     IngredientsModule,
     RecipesModule,
+    UserModule,
   ],
 })
 export class AppModule {}
