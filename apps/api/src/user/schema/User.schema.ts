@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IRecipe, IUser } from '@recipe-sharing/types';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, Model } from 'mongoose';
 import { Recipe } from '../../recipes/schema/Recipe.schema';
 
 @Schema()
