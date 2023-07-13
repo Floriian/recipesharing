@@ -1,6 +1,7 @@
 import {
   IsArray,
   IsBoolean,
+  IsDate,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -28,4 +29,8 @@ export class CreateRecipeDto implements IRecipe {
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @IsDate()
+  @IsNotEmpty()
+  createdAt: Date;
 }

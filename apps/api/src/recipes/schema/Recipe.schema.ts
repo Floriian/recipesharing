@@ -18,6 +18,9 @@ export class Recipe implements IRecipe {
 
   @Prop({ required: true })
   description: string;
+
+  @Prop({ required: true })
+  createdAt: Date;
 }
 
 export type RecipeDocument = HydratedDocument<Recipe>;
