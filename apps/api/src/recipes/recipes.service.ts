@@ -14,7 +14,7 @@ export class RecipesService implements RecipeServiceActions {
     @InjectModel(Recipe.name) private readonly recipeModel: RecipeModel,
   ) {}
   async getRecipes(): Promise<Recipe[]> {
-    const recipes = await this.recipeModel.find();
+    const recipes = await this.recipeModel.find().sort({ createdAt: 1 });
     return recipes;
   }
   async getRecipe(id: string): Promise<Recipe> {
