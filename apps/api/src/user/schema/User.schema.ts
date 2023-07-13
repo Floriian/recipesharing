@@ -8,6 +8,9 @@ export class User implements IUser {
   @Prop({ required: true })
   sub: string;
 
+  @Prop({ required: true })
+  name: string;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Recipe.name })
   recipes: IRecipe[];
 }
