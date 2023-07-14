@@ -15,6 +15,7 @@ import {
   UpdateRecipeDto,
 } from '@recipe-sharing/types';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { GetUser } from '../decorators';
 
 @Controller('recipes')
 export class RecipesController implements RecipeServiceActions {
@@ -32,8 +33,15 @@ export class RecipesController implements RecipeServiceActions {
 
   @Post()
   @UseGuards(JwtGuard)
-  createRecipe(dto: CreateRecipeDto) {
-    return this.recipesService.createRecipe(dto);
+  createRecipe(@Body() dto: CreateRecipeDto) {
+    return 'asd';
+    // return this.recipesService.createRecipe(dto);
+  }
+
+  @Post('1')
+  createRecipe1(@GetUser() user: any) {
+    console.log(user);
+    // return this.recipesService.createRecipe(dto);
   }
 
   @Patch(':id')
