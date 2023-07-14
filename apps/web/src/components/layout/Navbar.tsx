@@ -1,3 +1,5 @@
+import { AuthenticatedMenu } from "@/components/layout/AuthenticatedMenu";
+import { GuestMenu } from "@/components/layout/GuestMenu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -45,6 +47,7 @@ export function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      {isAuthenticated ? <AuthenticatedMenu /> : <GuestMenu />}
     </nav>
   );
 }
