@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import {
   CreateIngredientDto,
+  IUser,
   IngredientServiceActions,
   UpdateIngredientDto,
 } from '@recipe-sharing/types';
@@ -22,7 +23,10 @@ export class IngredientsService implements IngredientServiceActions {
     if (!ingredient) throw new IngredientNotFoundException();
     return ingredient;
   }
-  async createIngredient(dto: CreateIngredientDto): Promise<Ingredient> {
+  async createIngredient(
+    user: IUser,
+    dto: CreateIngredientDto,
+  ): Promise<Ingredient> {
     const newIngredient = new Ingredient();
     newIngredient.name = dto.name;
     newIngredient.amount = dto.amount;

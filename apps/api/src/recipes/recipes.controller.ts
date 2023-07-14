@@ -11,6 +11,7 @@ import {
 import { RecipesService } from './recipes.service';
 import {
   CreateRecipeDto,
+  IUser,
   RecipeServiceActions,
   UpdateRecipeDto,
 } from '@recipe-sharing/types';
@@ -33,15 +34,8 @@ export class RecipesController implements RecipeServiceActions {
 
   @Post()
   @UseGuards(JwtGuard)
-  createRecipe(@Body() dto: CreateRecipeDto) {
-    return 'asd';
-    // return this.recipesService.createRecipe(dto);
-  }
-
-  @Post('1')
-  createRecipe1(@GetUser() user: any) {
-    console.log(user);
-    // return this.recipesService.createRecipe(dto);
+  createRecipe(@GetUser() user: IUser, @Body() dto: CreateRecipeDto) {
+    return this.recipesService.createRecipe(user, dto);
   }
 
   @Patch(':id')

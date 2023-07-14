@@ -11,10 +11,12 @@ import {
 import { IngredientsService } from './ingredients.service';
 import {
   CreateIngredientDto,
+  IUser,
   IngredientServiceActions,
   UpdateIngredientDto,
 } from '@recipe-sharing/types';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { GetUser } from '../decorators';
 
 @Controller('ingredients')
 export class IngredientsController implements IngredientServiceActions {
@@ -32,8 +34,8 @@ export class IngredientsController implements IngredientServiceActions {
 
   @UseGuards(JwtGuard)
   @Post()
-  createIngredient(@Body() dto: CreateIngredientDto) {
-    return this.ingredientsService.createIngredient(dto);
+  createIngredient(@GetUser() user: IUser, @Body() dto: CreateIngredientDto) {
+    return this.ingredientsService.createIngredient(user, dto);
   }
 
   @UseGuards(JwtGuard)
