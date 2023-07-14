@@ -5,11 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { axiosInstance } from "../../lib/axios";
 
 export function ProfileHome() {
-  const { user } = useAuth0();
-
   const handleClick = async () => {
     try {
-      const data = await axiosInstance.post("/recipes/1", user);
+      const data = await axiosInstance.post("/recipes/1");
       console.log(data);
     } catch (err) {
       console.log(err);
