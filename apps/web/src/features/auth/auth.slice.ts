@@ -4,11 +4,13 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 type AuthState = {
   sub: string;
   name: string;
+  accessToken: string;
 };
 
 const initialState: AuthState = {
   sub: "",
   name: "",
+  accessToken: "",
 };
 
 export const authSlice = createSlice({
@@ -21,10 +23,17 @@ export const authSlice = createSlice({
     setName: (state, { payload }: PayloadAction<{ name: string }>) => {
       state.name = payload.name;
     },
-    setUser: (state, { payload }: PayloadAction<AuthState>) => {
+    setToken: (state, { payload }: PayloadAction<{ accessToken: string }>) => {
+      state.accessToken = payload.accessToken;
+    },
+    setAuthInfo: (state, { payload }: PayloadAction<AuthState>) => {
       (state.name = payload.name), (state.sub = payload.sub);
+    },
+    resetAuth: (state) => {
+      state.sub = initialState.sub;
+      state.name = initialState.name;
     },
   },
 });
 
-export const { setSub, setName, setUser } = authSlice.actions;
+export const { setSub, setName, setAuthInfo, resetAuth } = authSlice.actions;
