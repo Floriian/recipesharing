@@ -27,7 +27,9 @@ export const authSlice = createSlice({
       state.accessToken = payload.accessToken;
     },
     setAuthInfo: (state, { payload }: PayloadAction<AuthState>) => {
-      (state.name = payload.name), (state.sub = payload.sub);
+      (state.name = payload.name),
+        (state.sub = payload.sub),
+        (state.accessToken = payload.accessToken);
     },
     resetAuth: (state) => {
       state.sub = initialState.sub;
