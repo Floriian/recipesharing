@@ -1,9 +1,23 @@
 import axios from "axios";
+import { useAppSelector } from "../hooks/redux-hooks";
+import { RootState, store } from "../app/store/store";
 
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
-  headers: {
-    sub: "sdfhjsdfhnsdkjf",
-    name: "Floriian",
-  },
 });
+
+axiosInstance.interceptors.request.use(
+  (req) => {
+    const { auth } = store.getState();
+
+    if (auth) {
+      req.headers.sub = auth.sub;
+      req.headers.name = auth.name;
+    }
+
+    return req;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
