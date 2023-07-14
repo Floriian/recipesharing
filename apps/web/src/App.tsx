@@ -1,5 +1,5 @@
 import { Home } from "@/components/home/Home";
-import { Layout } from "lucide-react";
+import { Layout } from "@/components/layout/Layout";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
