@@ -12,10 +12,13 @@ export class CreateUserMiddleware implements NestMiddleware {
   async use(req: any, res: any, next: () => void) {
     const { sub, name } = req.headers;
 
-    const user = await this.userModel.findOne({ sub, name });
+    if (sub && name) {
+      const user = await this.userModel.findOne({ sub, name });
 
-    if (!user) {
-      await this.userModel.create({ sub, name });
+      if (!user) {
+        await this.userModel.create({ sub, name });
+      }
+      next();
     }
 
     next();
