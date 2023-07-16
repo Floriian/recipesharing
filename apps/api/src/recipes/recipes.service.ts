@@ -19,9 +19,7 @@ export class RecipesService implements RecipeServiceActions {
     return recipes;
   }
   async getRecipe(id: string): Promise<Recipe> {
-    const recipe = await this.recipeModel
-      .findById(id)
-      .populate(Ingredient.name);
+    const recipe = await this.recipeModel.findById(id).populate('ingredients');
     if (!recipe) throw new RecipeNotFoundException();
     return recipe;
   }
