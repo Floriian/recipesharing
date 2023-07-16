@@ -1,6 +1,7 @@
 import { Home } from "@/components/home/Home";
 import { Layout } from "@/components/layout/Layout";
 import { RecipePosts } from "@/features/Recipe/components/RecipePosts";
+import { ShowRecipe } from "@/features/Recipe/components/ShowRecipe";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipes">
           <Route index element={<RecipePosts />} />
+          <Route path="/recipes/:id" element={<ShowRecipe />} />
         </Route>
       </Route>
     </Routes>
