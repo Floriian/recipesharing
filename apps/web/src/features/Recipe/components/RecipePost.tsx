@@ -9,13 +9,15 @@ import {
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { IRecipe } from "@recipe-sharing/types";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   recipe: IRecipe;
 }
 
 export function RecipePost({ recipe }: Props) {
-  const { createdAt, description, glutenFree, name } = recipe;
+  const { createdAt, description, glutenFree, name, _id } = recipe;
+  const navigate = useNavigate();
 
   const isLongDescription = description.length > 150;
   return (
@@ -42,7 +44,7 @@ export function RecipePost({ recipe }: Props) {
             : description}
         </p>
         <CardTitle>{name}</CardTitle>
-        <Button>See more</Button>
+        <Button onClick={() => navigate(`/recipes/${_id}`)}>See more</Button>
       </CardContent>
       <CardFooter className="text-muted">
         {/* <p>{ingredients.length}</p> */}

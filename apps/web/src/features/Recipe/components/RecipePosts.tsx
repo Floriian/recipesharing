@@ -20,7 +20,7 @@ export function RecipePosts() {
     return (
       <>
         {recipe.data.map((recipe, i) => (
-          <RecipePost recipe={recipe} key={i} />
+          <RecipePost recipe={recipe} key={recipe._id} />
         ))}
       </>
     );
