@@ -1,6 +1,6 @@
 // icon:plate-wheat | Fontawesome https://fontawesome.com/ | Fontawesome
 
-export function IconPlateWheat(props: React.SVGProps<SVGSVGElement>) {
+export function PlateIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 512 512"
