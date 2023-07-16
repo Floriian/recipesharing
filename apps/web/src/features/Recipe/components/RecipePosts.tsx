@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { Loading } from "@/components/loading/Loading";
+import { CreateRecipe } from "@/features/Recipe/components/CreateRecipe";
 import { RecipeLayout } from "@/features/Recipe/components/RecipeLayout";
 import { RecipePost } from "@/features/Recipe/components/RecipePost";
 import { getRecipeThunk } from "@/features/Recipe/recipe.thunks";
@@ -28,7 +29,10 @@ export function RecipePosts() {
 
   return (
     <RecipeLayout>
-      <div className="flex flex-col gap-4 justify-center">{recipeList}</div>
+      <div className="flex flex-col gap-4 justify-center">
+        <CreateRecipe />
+        {recipeList}
+      </div>
     </RecipeLayout>
   );
 }
