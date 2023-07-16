@@ -28,7 +28,7 @@ export function ShowRecipe() {
                 <div className="flex items-center gap-2">
                   <PlateIcon />
                   <p>
-                    {recipe?.ingredients.length ? recipe.ingredients.length : 0}
+                    {/* {recipe?.ingredients.length ? recipe.ingredients.length : 0} */}
                   </p>
                 </div>
               </TooltipTrigger>
