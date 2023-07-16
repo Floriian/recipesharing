@@ -1,9 +1,10 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 
-export function RecipeLayout() {
-  return (
-    <div className="flex w-full justify-center">
-      <Outlet />
-    </div>
-  );
+type Props = {
+  children: React.ReactNode;
+};
+
+export function RecipeLayout({ children }: Props) {
+  return <div className="flex w-full justify-center">{children}</div>;
 }
