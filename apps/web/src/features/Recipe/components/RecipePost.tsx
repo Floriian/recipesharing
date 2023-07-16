@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,6 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
+import { PersonIcon } from "@radix-ui/react-icons";
 import { IRecipe } from "@recipe-sharing/types";
 
 interface Props {
@@ -17,16 +20,30 @@ export function RecipePost({ recipe }: Props) {
 
   const isLongDescription = description.length > 150;
   return (
-    <Card>
+    <Card className="w-[36rem]">
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <div className="flex items-center gap-4">
+          <Avatar>
+            <AvatarFallback>
+              <PersonIcon />
+            </AvatarFallback>
+          </Avatar>
+          <div className="text-primary">
+            <p>Floriian posted a new recipe.</p>
+            <p className="text-gray-400">
+              {createdAt.toString().split("T")[0]}
+            </p>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col gap-4 ">
         <p>
           {isLongDescription
             ? `${description.substring(0, 150)}...`
             : description}
         </p>
+        <CardTitle>{name}</CardTitle>
+        <Button>See more</Button>
       </CardContent>
       <CardFooter className="text-muted">
         {/* <p>{ingredients.length}</p> */}
