@@ -4,6 +4,7 @@ import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { IngredientSelect } from "@/features/Ingredients/components/IngredientSelect";
 export function CreateRecipeForm() {
   const form = useForm<CreateRecipeDto>({
     resolver: classValidatorResolver(CreateIngredientDto),
@@ -20,6 +21,8 @@ export function CreateRecipeForm() {
     >
       <Input {...form.register("name")} placeholder="Recipe name" />
       <Textarea {...form.register("description")} placeholder="Desciption" />
+
+      <IngredientSelect />
 
       <Button type="submit">Create Recipe</Button>
     </form>
