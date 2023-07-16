@@ -13,8 +13,9 @@ import { IIngredient } from "@recipe-sharing/types";
 import { useEffect, useMemo, useState } from "react";
 
 export function IngredientSelect() {
-  const [selectedIngredients, setSelectedIngredients] =
-    useState<IIngredient[]>();
+  const [selectedIngredients, setSelectedIngredients] = useState<IIngredient[]>(
+    []
+  );
 
   const ingredients = useAppSelector((state) => state.ingredients);
   const dispatch = useAppDispatch();
@@ -24,6 +25,11 @@ export function IngredientSelect() {
       dispatch(getIngredientThunk());
     };
   }, []);
+
+  const addIngredient = (ingredient: IIngredient) => {
+    setSelectedIngredients([...selectedIngredients, ingredient]);
+    console.log(ingredient);
+  };
 
   const ingredientsList = useMemo(() => {
     if (ingredients.isLoading) {
@@ -40,6 +46,7 @@ export function IngredientSelect() {
           <SelectItem
             key={i + ingredient.name + Math.random()}
             value={ingredient.name}
+            onClick={() => addIngredient(ingredient)}
           >
             {ingredient.name}
           </SelectItem>
@@ -49,11 +56,28 @@ export function IngredientSelect() {
   }, [ingredients.isLoading]);
 
   return (
-    <Select>
-      <SelectTrigger className="w-32">
-        <SelectValue placeholder="Select an ingredient" />
-      </SelectTrigger>
-      <SelectContent>{ingredientsList}</SelectContent>
-    </Select>
+    <>
+      {selectedIngredients.length === 0 && (
+        <Select>
+          <SelectTrigger className="w-32">
+            <SelectValue placeholder="Select an ingredient" />
+          </SelectTrigger>
+          <SelectContent>{ingredientsList}</SelectContent>
+        </Select>
+      )}
+      {selectedIngredients.map((ingredient) => (
+        <p key={ingredient.name}>
+          {ingredient.name} - {ingredient.amount}
+        </p>
+      ))}
+      {selectedIngredients.map((_val, i) => (
+        <Select key={i}>
+          <SelectTrigger className="w-32">
+            <SelectValue placeholder="Select an ingredient" />
+          </SelectTrigger>
+          <SelectContent>{ingredientsList}</SelectContent>
+        </Select>
+      ))}
+    </>
   );
 }
