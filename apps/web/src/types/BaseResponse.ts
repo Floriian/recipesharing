@@ -1,5 +1,7 @@
-import { type AxiosResponse } from "axios";
+export interface BaseEntity {
+  _id: string;
+}
 export interface BaseResponse<T> {
   success: boolean;
-  data: T;
+  data: BaseEntity & T;
 }
