@@ -28,7 +28,7 @@ export function RecipePosts() {
 
   return (
     <RecipeLayout>
-      <div className="border border-secondary max-w-2xl">{recipeList}</div>
+      <div className="flex flex-col gap-4 justify-center">{recipeList}</div>
     </RecipeLayout>
   );
 }
