@@ -15,8 +15,7 @@ interface Props {
 }
 
 export function RecipePost({ recipe }: Props) {
-  const { createdAt, description, glutenFree, ingredients, kcal, name } =
-    recipe;
+  const { createdAt, description, glutenFree, name } = recipe;
 
   const isLongDescription = description.length > 150;
   return (

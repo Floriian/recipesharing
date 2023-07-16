@@ -1,4 +1,3 @@
-import React from "react";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {

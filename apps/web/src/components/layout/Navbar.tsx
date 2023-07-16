@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 export function Navbar() {
