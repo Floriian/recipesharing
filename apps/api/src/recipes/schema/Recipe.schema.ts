@@ -4,7 +4,7 @@ import mongoose, { HydratedDocument, Model } from 'mongoose';
 import { Ingredient } from '../../ingredients/schema/Ingredient.schema';
 
 @Schema()
-export class Recipe implements IRecipe {
+export class Recipe implements Omit<IRecipe, '_id'> {
   @Prop({ required: true })
   name: string;
 
