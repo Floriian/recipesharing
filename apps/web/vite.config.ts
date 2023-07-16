@@ -10,4 +10,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ["@recipe-sharing/types"],
+  },
+  build: {
+    commonjsOptions: {
+      include: [/@recipe-sharing\/types/, /node_modules/],
+    },
+  },
 });
