@@ -1,3 +1,5 @@
+import { RecipePosts } from "@/features/Recipe/components/RecipePosts";
+
 export function Home() {
-  return <h1>Home</h1>;
+  return <RecipePosts />;
 }
