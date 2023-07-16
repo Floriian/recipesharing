@@ -8,7 +8,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@radix-ui/react-select";
+} from "@/components/ui/select";
 import { IIngredient } from "@recipe-sharing/types";
 import { useEffect, useMemo, useState } from "react";
 
@@ -37,7 +37,12 @@ export function IngredientSelect() {
     return (
       <>
         {ingredients.data.map((ingredient, i) => (
-          <SelectItem key={i} value={ingredient.name} />
+          <SelectItem
+            key={i + ingredient.name + Math.random()}
+            value={ingredient.name}
+          >
+            {ingredient.name}
+          </SelectItem>
         ))}
       </>
     );
