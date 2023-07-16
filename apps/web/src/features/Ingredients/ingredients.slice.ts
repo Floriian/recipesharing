@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "@/features/Ingredients/initialState";
 import { getIngredientThunk } from "@/features/Ingredients/ingredients.thunk";
-import { getRecipeThunk } from "@/features/Recipe/recipe.thunks";
 export const ingredientsSlice = createSlice({
-  name: "ingredient",
+  name: "ingredients",
   initialState,
   reducers: {},
 
@@ -12,7 +11,7 @@ export const ingredientsSlice = createSlice({
       .addCase(getIngredientThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getRecipeThunk.fulfilled, (state, { payload }) => {
+      .addCase(getIngredientThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.data = payload.data;
       })
