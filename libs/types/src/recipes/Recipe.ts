@@ -5,7 +5,7 @@ export interface IRecipe {
   name: string;
   kcal: number;
   glutenFree: boolean;
-  ingredients: IIngredient[];
+  ingredients: IIngredient;
   description: string;
   createdAt: Date;
 }

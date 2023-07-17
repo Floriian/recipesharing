@@ -14,7 +14,7 @@ export class Recipe implements Omit<IRecipe, '_id'> {
   glutenFree: boolean;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Ingredient.name })
-  ingredients: IIngredient[];
+  ingredients: IIngredient;
 
   @Prop({ required: true })
   description: string;
