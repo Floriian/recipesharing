@@ -9,7 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 
 export function RecipePage() {
   const [search, setSearch] = useState<string>("");
-  const [recipe, setRecipe] = useState<IRecipe[]>();
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [glutenFree, setGlutenFree] = useState<boolean>(false);
 
   const recipeState = useAppSelector((state) => state.recipe);
@@ -22,13 +22,15 @@ export function RecipePage() {
   }, []);
 
   useEffect(() => {
-    if (search.length <= 0 && search === "") {
-      setRecipe(recipeState.data);
-    } else {
+    if (search === "") {
+      setRecipes(recipeState.data);
+    }
+
+    if (search != "") {
       const newRecipes = recipeState.data.filter((r) =>
         r.name.toLowerCase().includes(search.toLowerCase())
       );
-      setRecipe(newRecipes);
+      setRecipes(newRecipes);
     }
   }, [search]);
 
@@ -39,12 +41,12 @@ export function RecipePage() {
 
     return (
       <>
-        {recipe?.map((r) => (
+        {recipes?.map((r) => (
           <RecipeCard key={r._id} recipe={r} />
         ))}
       </>
     );
-  }, [recipeState.isLoading, search]);
+  }, [recipeState.isLoading, recipes]);
 
   const handleCheckbox = () => {
     setGlutenFree(!glutenFree);
@@ -58,7 +60,8 @@ export function RecipePage() {
           <Input
             placeholder="Type to search"
             className="w-96"
-            onClick={(e) => setSearch(e.currentTarget.value)}
+            value={search}
+            onChange={(e) => setSearch(e.currentTarget.value)}
           />
           <div className="flex items-center gap-1.5">
             <Checkbox id="glutenfree" onChange={handleCheckbox} />
