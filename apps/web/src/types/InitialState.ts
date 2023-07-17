@@ -1,5 +1,5 @@
 export interface InitialState<T> {
   isLoading: boolean;
-  data: Array<T>;
+  data: Array<T> | T;
   error?: any;
 }
