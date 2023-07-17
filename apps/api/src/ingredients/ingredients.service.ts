@@ -28,8 +28,7 @@ export class IngredientsService implements IngredientServiceActions {
     dto: CreateIngredientDto,
   ): Promise<Ingredient> {
     const newIngredient = new Ingredient();
-    newIngredient.name = dto.name;
-    newIngredient.amount = dto.amount;
+    newIngredient.ingredients = dto.ingredients;
 
     await this.ingredientModel.create(newIngredient);
     return newIngredient;
@@ -41,12 +40,9 @@ export class IngredientsService implements IngredientServiceActions {
     const ingredient = await this.ingredientModel.findById(id);
     if (!ingredient) throw new IngredientNotFoundException();
 
-    const amount = dto.amount ? dto.amount : ingredient.amount;
-    const name = dto.name ? dto.name : ingredient.name;
-
     return await this.ingredientModel.findOneAndUpdate(
       { _id: id },
-      { $set: { name, amount } },
+      { $set: { ingredients: dto.ingredients } },
     );
   }
   async deleteIngredient(id: string) {

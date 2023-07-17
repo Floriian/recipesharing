@@ -2,12 +2,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IIngredient } from '@recipe-sharing/types';
 import { HydratedDocument, Model } from 'mongoose';
 @Schema()
-export class Ingredient implements IIngredient {
+export class Ingredient implements Omit<IIngredient, '_id'> {
   @Prop({ required: true })
-  name: string;
-
-  @Prop({ required: true })
-  amount: string;
+  ingredients: string;
 }
 export type IngredientDocument = HydratedDocument<Ingredient>;
 export type IngredientModel = Model<Ingredient>;

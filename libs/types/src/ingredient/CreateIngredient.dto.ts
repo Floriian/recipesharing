@@ -4,8 +4,5 @@ import { IIngredient } from "./Ingredient";
 export class CreateIngredientDto implements IIngredient {
   @IsString()
   @IsNotEmpty()
-  name: string;
-  @IsString()
-  @IsNotEmpty()
-  amount: string;
+  ingredients: string;
 }
