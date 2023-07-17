@@ -3,6 +3,6 @@ import { IIngredient } from "@recipe-sharing/types";
 
 export const initialState: InitialState<IIngredient> = {
   isLoading: false,
-  data: [],
+  data: { ingredients: "", _id: "" },
   error: null,
 };
