@@ -25,6 +25,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
   validate(payload: Auth0Payload) {
+    console.log(payload);
     return payload;
   }
 }

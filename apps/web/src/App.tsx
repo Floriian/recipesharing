@@ -1,7 +1,6 @@
 import { Home } from "@/components/home/Home";
 import { Layout } from "@/components/layout/Layout";
 import { RecipePage } from "@/features/Recipe/components/RecipePage";
-import { RecipePosts } from "@/features/Recipe/components/RecipePosts";
 import { ShowRecipe } from "@/features/Recipe/components/ShowRecipe";
 import { Route, Routes } from "react-router-dom";
 

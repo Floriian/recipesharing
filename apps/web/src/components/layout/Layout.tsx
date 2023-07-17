@@ -1,4 +1,5 @@
-import { useAppDispatch } from "@/app/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
+import { store } from "@/app/store/store";
 import { Navbar } from "@/components/layout/Navbar";
 import {
   setAccessToken,
@@ -10,13 +11,15 @@ import { Outlet } from "react-router-dom";
 
 export function Layout() {
   const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isAuthenticated) {
-      getAccessTokenSilently().then((token) =>
-        dispatch(setAccessToken({ accessToken: token }))
-      );
+      getAccessTokenSilently().then((token) => {
+        dispatch(setAccessToken({ accessToken: token }));
+        sessionStorage.setItem("access_token", token);
+      });
 
       if (user?.name && user?.sub) {
         dispatch(setUserInfo({ name: user.name, sub: user.sub }));
