@@ -29,6 +29,7 @@ export class RecipesService implements RecipeServiceActions {
     }
   }
   async createRecipe(user: IUser, dto: CreateRecipeDto): Promise<Recipe> {
+    console.log(user);
     const recipe = await this.recipeModel.create({ dto });
     return await recipe.save();
   }
