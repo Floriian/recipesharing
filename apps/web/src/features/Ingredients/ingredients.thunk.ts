@@ -4,9 +4,9 @@ import { IIngredient } from "@recipe-sharing/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getIngredientThunk = createAsyncThunk<
-  BaseResponse<IIngredient[]>,
+  BaseResponse<IIngredient>,
   void
->("ingredients/getIngredients", async (_, api) => {
+>("ingredients/getIngredient", async (_, api) => {
   try {
     const res = await ingredientsService.getIngredients();
     return res.data;

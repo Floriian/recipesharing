@@ -9,7 +9,7 @@ import {
 import { IIngredient } from "../ingredient/Ingredient";
 import { IRecipe } from "./Recipe";
 
-export class CreateRecipeDto implements IRecipe {
+export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -24,7 +24,7 @@ export class CreateRecipeDto implements IRecipe {
 
   @IsArray()
   @IsNotEmpty()
-  ingredients: IIngredient[];
+  ingredients: IIngredient;
 
   @IsString()
   @IsNotEmpty()

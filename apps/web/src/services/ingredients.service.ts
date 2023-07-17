@@ -4,9 +4,7 @@ import { IIngredient } from "@recipe-sharing/types";
 
 export const ingredientsService = {
   getIngredients: async () => {
-    const res = await axiosInstance<BaseResponse<IIngredient[]>>(
-      "/ingredients"
-    );
+    const res = await axiosInstance<BaseResponse<IIngredient>>("/ingredients");
     return res;
   },
 };
