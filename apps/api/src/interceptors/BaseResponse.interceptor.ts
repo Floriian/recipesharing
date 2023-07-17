@@ -4,6 +4,7 @@ import {
   HttpException,
   NestInterceptor,
 } from '@nestjs/common';
+import { ValidationError } from 'class-validator';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
 /**
@@ -29,6 +30,7 @@ export class BaseResponseInterceptor implements NestInterceptor {
           data: {
             message: error.message,
             statusCode: error.getStatus(),
+            causedBy: error.getResponse()['message'],
           },
         },
         error.getStatus(),
