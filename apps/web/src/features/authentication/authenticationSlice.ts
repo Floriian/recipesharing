@@ -5,20 +5,27 @@ export const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    setAuthenticationState: (
+    setAccessToken: (
       state,
-      { payload }: PayloadAction<AuthenticationType>
+      { payload }: PayloadAction<{ accessToken: string }>
     ) => {
       state.accessToken = payload.accessToken;
+    },
+
+    setUserInfo: (
+      state,
+      { payload }: PayloadAction<Omit<AuthenticationType, "accessToken">>
+    ) => {
+      state.name = payload.name;
+      state.sub = payload.sub;
+    },
+
+    resetAuthentication: (state) => {
+      state.accessToken = initialState.accessToken;
       state.name = state.name;
       state.sub = state.sub;
     },
-    resetAuthentication: (state) => {
-      state.accessToken = initialState.accessToken;
-      state.name = initialState.name;
-      state.sub = initialState.sub;
-    },
   },
 });
-export const { resetAuthentication, setAuthenticationState } =
+export const { resetAuthentication, setAccessToken, setUserInfo } =
   authenticationSlice.actions;
