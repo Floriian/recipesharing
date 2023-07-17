@@ -7,7 +7,6 @@ import {
   UpdateRecipeDto,
 } from '@recipe-sharing/types';
 import { Recipe, RecipeModel } from './schema/Recipe.schema';
-import { Ingredient } from '../ingredients/schema/Ingredient.schema';
 import { RecipeNotFoundException } from './exceptions';
 @Injectable()
 export class RecipesService implements RecipeServiceActions {
@@ -19,9 +18,15 @@ export class RecipesService implements RecipeServiceActions {
     return recipes;
   }
   async getRecipe(id: string): Promise<Recipe> {
-    const recipe = await this.recipeModel.findById(id).populate('ingredients');
-    if (!recipe) throw new RecipeNotFoundException();
-    return recipe;
+    try {
+      const recipe = await this.recipeModel
+        .findById(id)
+        .populate('ingredients');
+      if (!recipe) throw new RecipeNotFoundException();
+      return recipe;
+    } catch (e) {
+      throw new RecipeNotFoundException();
+    }
   }
   async createRecipe(user: IUser, dto: CreateRecipeDto): Promise<Recipe> {
     const recipe = await this.recipeModel.create({ dto });
