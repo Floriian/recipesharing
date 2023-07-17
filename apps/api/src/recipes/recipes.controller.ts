@@ -34,7 +34,7 @@ export class RecipesController implements RecipeServiceActions {
 
   @Post()
   @UseGuards(JwtGuard)
-  createRecipe(@GetUser('name') user: IUser, @Body() dto: CreateRecipeDto) {
+  createRecipe(@GetUser() user: IUser, @Body() dto: CreateRecipeDto) {
     return this.recipesService.createRecipe(user, dto);
   }
 
