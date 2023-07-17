@@ -4,9 +4,11 @@ import { CreateRecipe } from "@/features/Recipe/components/CreateRecipe";
 import { RecipeLayout } from "@/features/Recipe/components/RecipeLayout";
 import { RecipePost } from "@/features/Recipe/components/RecipePost";
 import { getRecipeThunk } from "@/features/Recipe/recipe.thunks";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useMemo } from "react";
 
 export function RecipePosts() {
+  const { isAuthenticated } = useAuth0();
   const dispatch = useAppDispatch();
   const recipe = useAppSelector((state) => state.recipe);
   useEffect(() => {
@@ -30,7 +32,7 @@ export function RecipePosts() {
   return (
     <RecipeLayout>
       <div className="flex flex-col gap-4 justify-center">
-        <CreateRecipe />
+        {isAuthenticated && <CreateRecipe />}
         {recipeList}
       </div>
     </RecipeLayout>
