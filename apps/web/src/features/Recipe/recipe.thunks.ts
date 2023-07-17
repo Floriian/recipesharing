@@ -10,7 +10,6 @@ export const getRecipeThunk = createAsyncThunk<BaseResponse<IRecipe[]>, void>(
       const res = await recipeService.getRecipes();
       return res.data;
     } catch (e) {
-      console.log(e);
       const { rejectWithValue } = api;
       return rejectWithValue({
         error: e,
