@@ -6,16 +6,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { CreateRecipeForm } from "@/features/Recipe/components/CreateRecipeForm";
 
 export function CreateRecipe() {
   return (
     <Dialog>
-      <DialogTrigger>
-        <div>
-          <Button>Create a new recipe</Button>
-        </div>
+      <DialogTrigger asChild>
+        <Button>Create a new recipe</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
