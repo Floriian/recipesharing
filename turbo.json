@@ -10,7 +10,9 @@
                 "^build"
             ],
             "outputs": [
-                "dist/**"
+                "apps/api/dist/**",
+                "apps/web/dist/**",
+                "libs/types/dist/**"
             ]
         }
     }
