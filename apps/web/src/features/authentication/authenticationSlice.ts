@@ -21,9 +21,7 @@ export const authenticationSlice = createSlice({
     },
 
     resetAuthentication: (state) => {
-      state.accessToken = initialState.accessToken;
-      state.name = state.name;
-      state.sub = state.sub;
+      state = initialState;
     },
   },
 });
