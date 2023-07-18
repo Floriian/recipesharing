@@ -8,11 +8,13 @@ RUN npm i -g pnpm
 
 FROM base AS dev
 
-WORKDIR /recipeshareing app
+WORKDIR /app
 
 COPY package.json .
 COPY pnpm-workspace.yaml .
 
 RUN pnpm install
 
-CMD [ "pnpm", "dev" ]
+RUN pnpm build
+
+CMD ["node", "apps/api/dist/main.js"]
