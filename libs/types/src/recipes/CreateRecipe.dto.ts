@@ -24,7 +24,7 @@ export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
 
   @IsArray()
   @IsNotEmpty()
-  ingredients: IIngredient;
+  ingredients: Omit<IIngredient, "_id">;
 
   @IsString()
   @IsNotEmpty()
