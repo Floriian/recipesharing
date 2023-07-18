@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "turbo": "^1.10.7"
+  },
+  "engines": {
+    "node": ">=18.16"
   }
 }
