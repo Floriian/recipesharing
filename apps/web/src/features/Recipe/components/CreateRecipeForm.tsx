@@ -15,7 +15,6 @@ export function CreateRecipeForm() {
   } = useForm<CreateRecipeDto>({
     resolver: classValidatorResolver(CreateRecipeDto),
     defaultValues: {
-      createdAt: new Date(),
       glutenFree: false,
     },
   });

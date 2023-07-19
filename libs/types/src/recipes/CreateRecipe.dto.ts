@@ -7,7 +7,7 @@ import {
 } from "class-validator";
 import { IRecipe } from "./Recipe";
 
-export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
+export class CreateRecipeDto {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -27,8 +27,4 @@ export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
   @IsString()
   @IsNotEmpty()
   ingredients: string;
-
-  @IsDate()
-  @IsNotEmpty()
-  createdAt: Date;
 }
