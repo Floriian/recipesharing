@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { recipeService } from "@/services/recipe.service";
 export function CreateRecipeForm() {
   const {
     register,
@@ -19,7 +20,14 @@ export function CreateRecipeForm() {
     },
   });
 
-  const submitData = async (data: CreateRecipeDto) => {};
+  const submitData = async (data: CreateRecipeDto) => {
+    try {
+      const res = recipeService.createRecipe(data);
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => console.log(errors), [errors]);
 
