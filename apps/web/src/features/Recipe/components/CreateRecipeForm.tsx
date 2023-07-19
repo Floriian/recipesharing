@@ -1,4 +1,4 @@
-import { CreateIngredientDto, CreateRecipeDto } from "@recipe-sharing/types";
+import { CreateRecipeDto } from "@recipe-sharing/types";
 import { useForm } from "react-hook-form";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ export function CreateRecipeForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<CreateRecipeDto>({
-    resolver: classValidatorResolver(CreateIngredientDto),
+    resolver: classValidatorResolver(CreateRecipeDto),
   });
 
   const submitData = async (data: CreateRecipeDto) => {
@@ -28,7 +28,7 @@ export function CreateRecipeForm() {
       <Input {...register("name")} placeholder="Recipe name" />
       <Textarea {...register("description")} placeholder="Desciption" />
 
-      <Textarea {...register("ingredients.ingredients")} />
+      <Textarea {...register("ingredients")} />
 
       <Button type="submit">Create Recipe</Button>
     </form>
