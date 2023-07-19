@@ -14,9 +14,6 @@ export function CreateRecipeForm() {
     formState: { errors },
   } = useForm<CreateRecipeDto>({
     resolver: classValidatorResolver(CreateRecipeDto),
-    defaultValues: {
-      glutenFree: false,
-    },
   });
 
   const submitData = async (data: CreateRecipeDto) => {
