@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 export function CreateRecipeForm() {
   const {
     register,
@@ -12,11 +13,13 @@ export function CreateRecipeForm() {
     formState: { errors },
   } = useForm<CreateRecipeDto>({
     resolver: classValidatorResolver(CreateRecipeDto),
+    defaultValues: {
+      createdAt: new Date(),
+      glutenFree: false,
+    },
   });
 
-  const submitData = async (data: CreateRecipeDto) => {
-    console.log(data);
-  };
+  const submitData = async (data: CreateRecipeDto) => {};
 
   useEffect(() => console.log(errors), [errors]);
 
@@ -28,8 +31,15 @@ export function CreateRecipeForm() {
       <Input {...register("name")} placeholder="Recipe name" />
       <Textarea {...register("description")} placeholder="Desciption" />
 
-      <Textarea {...register("ingredients")} />
+      <Textarea {...register("ingredients")} placeholder="Ingredients" />
 
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <Input type="number" {...register("kcal")} placeholder="KCAL" />
+        <div className="flex items-center gap-1.5">
+          <Checkbox id="glutenfree" {...register("glutenFree")} />
+          <label htmlFor="glutenfree">Gluten free</label>
+        </div>
+      </div>
       <Button type="submit">Create Recipe</Button>
     </form>
   );

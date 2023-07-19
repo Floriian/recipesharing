@@ -1,9 +1,8 @@
 import {
-  IsArray,
   IsBoolean,
   IsDate,
   IsNotEmpty,
-  IsNumber,
+  IsNumberString,
   IsString,
 } from "class-validator";
 import { IRecipe } from "./Recipe";
@@ -13,9 +12,9 @@ export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
   @IsNotEmpty()
   name: string;
 
-  @IsNumber()
+  @IsNumberString()
   @IsNotEmpty()
-  kcal: number;
+  kcal: string;
 
   @IsBoolean()
   @IsNotEmpty()
