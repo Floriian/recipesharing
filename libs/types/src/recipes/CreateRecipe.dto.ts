@@ -25,6 +25,10 @@ export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
   @IsNotEmpty()
   description: string;
 
+  @IsString()
+  @IsNotEmpty()
+  ingredients: string;
+
   @IsDate()
   @IsNotEmpty()
   createdAt: Date;

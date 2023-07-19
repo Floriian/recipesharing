@@ -16,6 +16,9 @@ export class Recipe implements Omit<IRecipe, '_id'> {
   description: string;
 
   @Prop({ required: true })
+  ingredients: string;
+
+  @Prop({ required: true })
   createdAt: Date;
 }
 
