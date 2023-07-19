@@ -1,11 +1,9 @@
 import {
   IsBoolean,
-  IsDate,
   IsNotEmpty,
   IsNumberString,
   IsString,
 } from "class-validator";
-import { IRecipe } from "./Recipe";
 
 export class CreateRecipeDto {
   @IsString()
