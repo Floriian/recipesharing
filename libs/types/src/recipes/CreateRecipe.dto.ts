@@ -6,7 +6,6 @@ import {
   IsNumber,
   IsString,
 } from "class-validator";
-import { IIngredient } from "../ingredient/Ingredient";
 import { IRecipe } from "./Recipe";
 
 export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
@@ -21,10 +20,6 @@ export class CreateRecipeDto implements Omit<IRecipe, "_id"> {
   @IsBoolean()
   @IsNotEmpty()
   glutenFree: boolean;
-
-  @IsArray()
-  @IsNotEmpty()
-  ingredients: Omit<IIngredient, "_id">;
 
   @IsString()
   @IsNotEmpty()
