@@ -20,6 +20,14 @@ export function RecipePosts() {
       return <Loading />;
     }
 
+    if (recipe.data.length <= 0) {
+      return (
+        <p className="text-center text-red-500 font-bold">
+          There are no recipes!
+        </p>
+      );
+    }
+
     return (
       <>
         {recipe.data.map((recipe) => (
