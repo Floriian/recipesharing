@@ -7,19 +7,18 @@ import {
   Patch,
   Post,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { RecipesService } from './recipes.service';
-import {
-  CreateRecipeDto,
-  IUser,
-  RecipeServiceActions,
-  UpdateRecipeDto,
-} from '@recipe-sharing/types';
+import { CreateRecipeDto, UpdateRecipeDto } from '@recipe-sharing/types';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { GetUser } from '../decorators';
+import { Auth0Payload } from 'src/types';
+import { BaseResponseInterceptor } from 'src/interceptors';
 
 @Controller('recipes')
-export class RecipesController implements RecipeServiceActions {
+@UseInterceptors(BaseResponseInterceptor)
+export class RecipesController {
   constructor(private readonly recipesService: RecipesService) {}
 
   @Get()
@@ -34,7 +33,7 @@ export class RecipesController implements RecipeServiceActions {
 
   @Post()
   @UseGuards(JwtGuard)
-  createRecipe(@GetUser() user: IUser, @Body() dto: CreateRecipeDto) {
+  createRecipe(@GetUser() user: Auth0Payload, @Body() dto: CreateRecipeDto) {
     return this.recipesService.createRecipe(user, dto);
   }
 
