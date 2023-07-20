@@ -8,10 +8,13 @@ import {
 } from '@recipe-sharing/types';
 import { Recipe, RecipeModel } from './schema/Recipe.schema';
 import { RecipeNotFoundException } from './exceptions';
+import { Auth0Payload } from 'src/types';
+import { UserService } from 'src/user/user.service';
 @Injectable()
-export class RecipesService implements RecipeServiceActions {
+export class RecipesService {
   constructor(
     @InjectModel(Recipe.name) private readonly recipeModel: RecipeModel,
+    private readonly userService: UserService,
   ) {}
   async getRecipes(): Promise<Recipe[]> {
     const recipes = await this.recipeModel
@@ -31,9 +34,19 @@ export class RecipesService implements RecipeServiceActions {
       throw new RecipeNotFoundException();
     }
   }
-  async createRecipe(user: IUser, dto: CreateRecipeDto): Promise<Recipe> {
-    console.log(user);
-    const recipe = await this.recipeModel.create({ dto });
+  async createRecipe(
+    user: Auth0Payload,
+    dto: CreateRecipeDto,
+  ): Promise<Recipe> {
+    // const { _id } = await this.userService.getUserBySub(user.sub);
+
+    const recipe = await this.recipeModel.create({
+      ...dto,
+      createdAt: Date.now(),
+      // user: {
+      //   _id,
+      // },
+    });
     return await recipe.save();
   }
   async updateRecipe(id: string, dto: UpdateRecipeDto) {
