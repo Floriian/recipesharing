@@ -1,11 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import {
-  CreateRecipeDto,
-  IUser,
-  RecipeServiceActions,
-  UpdateRecipeDto,
-} from '@recipe-sharing/types';
+import { CreateRecipeDto, UpdateRecipeDto } from '@recipe-sharing/types';
 import { Recipe, RecipeModel } from './schema/Recipe.schema';
 import { RecipeNotFoundException } from './exceptions';
 import { Auth0Payload } from 'src/types';
@@ -38,14 +33,14 @@ export class RecipesService {
     user: Auth0Payload,
     dto: CreateRecipeDto,
   ): Promise<Recipe> {
-    // const { _id } = await this.userService.getUserBySub(user.sub);
+    const { _id } = await this.userService.getUserBySub(user.sub);
 
     const recipe = await this.recipeModel.create({
       ...dto,
       createdAt: Date.now(),
-      // user: {
-      //   _id,
-      // },
+      user: {
+        _id,
+      },
     });
     return await recipe.save();
   }
