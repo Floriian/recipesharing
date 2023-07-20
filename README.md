@@ -30,3 +30,4 @@ When you signup in the fronend app, you got redirected to auth0 signin page.
 If login successful, then you get redirected back to frontend app. After you got redirected to the frontend app, it retrieves data from auth0 api, and send state to redux. If you make an API call, which was is protected axios sets headers from redux state via axios interceptors. The API check if JWT token is valid. If valid it handles the request.
 
 Here is the chart:
+![Chart](https://i.imgur.com/K6fw553.png)
