@@ -1,7 +1,7 @@
-import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
-import { UserService } from '../../user/user.service';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserModel } from '../../user/schema/User.schema';
+import { Request } from 'express';
 
 @Injectable()
 /**
@@ -9,7 +9,7 @@ import { User, UserModel } from '../../user/schema/User.schema';
  */
 export class CreateUserMiddleware implements NestMiddleware {
   constructor(@InjectModel(User.name) private readonly userModel: UserModel) {}
-  async use(req: any, res: any, next: () => void) {
+  async use(req: Request, res: any, next: () => void) {
     const { sub, name } = req.headers;
 
     if (sub && name) {
@@ -18,7 +18,6 @@ export class CreateUserMiddleware implements NestMiddleware {
       if (!user) {
         await this.userModel.create({ sub, name });
       }
-      next();
     }
 
     next();
