@@ -13,6 +13,8 @@ export const bearerInterceptor = (conf: InternalAxiosRequestConfig) => {
 
   if (authState) {
     conf.headers.Authorization = `Bearer ${authState.accessToken}`;
+    conf.headers["sub"] = authState.sub;
+    conf.headers["name"] = authState.name;
     return conf;
   }
 
