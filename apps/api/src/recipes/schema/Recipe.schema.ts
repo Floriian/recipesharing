@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IRecipe } from '@recipe-sharing/types';
 import mongoose, { HydratedDocument, Model } from 'mongoose';
+import { User } from 'src/user/schema/User.schema';
 
 @Schema()
-export class Recipe implements Omit<IRecipe, '_id'> {
+export class Recipe {
   @Prop({ required: true })
   name: string;
 
@@ -20,6 +20,9 @@ export class Recipe implements Omit<IRecipe, '_id'> {
 
   @Prop({ required: true })
   createdAt: Date;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'users' })
+  user: User;
 }
 
 export type RecipeDocument = HydratedDocument<Recipe>;
