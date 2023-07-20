@@ -23,6 +23,7 @@ import { User, UserSchema } from './schema/User.schema';
         schema: UserSchema,
       },
     ]),
+    UserService,
   ],
 })
 export class UserModule {}
