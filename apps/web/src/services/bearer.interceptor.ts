@@ -1,8 +1,12 @@
-import { store } from "@/app/store/store";
-import { injectStore } from "@/lib/injectStore";
+import { store as appStore } from "@/app/store/store";
 import { InternalAxiosRequestConfig } from "axios";
 
-injectStore(store);
+type AppStore = typeof appStore;
+let store: AppStore;
+
+export const injectStore = (_store: any) => {
+  store = _store;
+};
 
 export const bearerInterceptor = (conf: InternalAxiosRequestConfig) => {
   const authState = store.getState().authentication;
