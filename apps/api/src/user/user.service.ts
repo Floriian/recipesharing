@@ -8,7 +8,6 @@ export class UserService {
 
   async getUserBySub(sub: string) {
     const user = await this.userModel.findOne({ sub });
-    console.log(user);
     return user;
   }
 }
