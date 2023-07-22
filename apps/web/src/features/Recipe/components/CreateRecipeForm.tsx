@@ -4,7 +4,6 @@ import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { recipeService } from "@/services/recipe.service";
 import {
@@ -13,9 +12,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
+import { addIngredient } from "@/features/Recipe/recipe.slice";
+import { useAppDispatch } from "@/app/store/hooks";
 export function CreateRecipeForm() {
+  const dispatch = useAppDispatch();
+
   const form = useForm<CreateRecipeDto>({
     resolver: classValidatorResolver(CreateRecipeDto),
     defaultValues: {
@@ -29,8 +31,10 @@ export function CreateRecipeForm() {
 
   const submitData = async (data: CreateRecipeDto) => {
     try {
-      const res = recipeService.createRecipe(data);
-      console.log(res);
+      const { data: recipeServiceResponse } = await recipeService.createRecipe(
+        data
+      );
+      dispatch(addIngredient(recipeServiceResponse.data));
     } catch (e) {
       console.log(e);
     }

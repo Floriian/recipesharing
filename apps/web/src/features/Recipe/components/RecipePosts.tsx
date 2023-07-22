@@ -15,6 +15,10 @@ export function RecipePosts() {
     dispatch(getRecipeThunk());
   }, []);
 
+  useEffect(() => {
+    console.log("state changed");
+  }, [recipe]);
+
   const recipeList = useMemo(() => {
     if (recipe.isLoading) {
       return <Loading />;
@@ -35,7 +39,7 @@ export function RecipePosts() {
         ))}
       </>
     );
-  }, [recipe.isLoading]);
+  }, [recipe.isLoading, recipe.data]);
 
   return (
     <RecipeLayout>

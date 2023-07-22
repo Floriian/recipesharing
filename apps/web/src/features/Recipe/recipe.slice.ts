@@ -1,10 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialState } from "@/features/Recipe/initialState";
 import { getRecipeThunk } from "@/features/Recipe/recipe.thunks";
+import { IRecipe } from "@recipe-sharing/types";
 export const recipeSlice = createSlice({
   name: "recipe",
   initialState,
-  reducers: {},
+  reducers: {
+    addIngredient: (state, { payload }: PayloadAction<IRecipe>) => {
+      state.data.push(payload);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getRecipeThunk.pending, (state) => {
@@ -20,3 +25,5 @@ export const recipeSlice = createSlice({
       });
   },
 });
+
+export const { addIngredient } = recipeSlice.actions;
