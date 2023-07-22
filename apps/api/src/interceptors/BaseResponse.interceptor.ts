@@ -2,14 +2,15 @@ import {
   CallHandler,
   ExecutionContext,
   HttpException,
+  Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { ValidationError } from 'class-validator';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
 /**
  * This interceptor add success field to every response.
  */
+@Injectable()
 export class BaseResponseInterceptor implements NestInterceptor {
   intercept(ctx: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
