@@ -14,11 +14,6 @@ export function RecipePosts() {
   useEffect(() => {
     dispatch(getRecipeThunk());
   }, []);
-
-  useEffect(() => {
-    console.log("state changed");
-  }, [recipe]);
-
   const recipeList = useMemo(() => {
     if (recipe.isLoading) {
       return <Loading />;
