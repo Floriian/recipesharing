@@ -14,7 +14,7 @@ export class RecipesService {
   async getRecipes(): Promise<Recipe[]> {
     const recipes = await this.recipeModel
       .find()
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 })
       .limit(10);
     return recipes;
   }
