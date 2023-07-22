@@ -6,4 +6,5 @@ export interface Auth0Payload {
   exp: number;
   azp: string;
   scope: string;
+  email: string;
 }
