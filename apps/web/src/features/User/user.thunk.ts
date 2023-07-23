@@ -7,7 +7,7 @@ export const getUserThunk = createAsyncThunk<BaseResponse<IUser>, void>(
   "user/getUser",
   async (_, api) => {
     try {
-      const res = await userService.getUser();
+      const res = await userService.getUser(true);
       return res;
     } catch (e) {
       const { rejectWithValue } = api;
