@@ -20,6 +20,8 @@ function App() {
         </Route>
         <Route path="/user">
           <Route index element={<UserPage />} />
+          <Route path="/user/edit-profile" />
+          <Route path="/user/my-recipes" />
         </Route>
       </Route>
     </Routes>
