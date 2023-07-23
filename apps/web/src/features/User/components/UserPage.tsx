@@ -1,3 +1,4 @@
+import { useAppDispatch } from "@/app/store/hooks";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,10 +8,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { UserLayout } from "@/features/User/components/UserLayout";
+import { getUserThunk } from "@/features/User/user.thunk";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function UserPage() {
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserThunk);
+  }, [dispatch]);
+
   return (
     <UserLayout>
       <Card>
