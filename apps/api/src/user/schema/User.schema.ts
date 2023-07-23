@@ -10,7 +10,7 @@ export class User {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'recipes' })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }] })
   recipes: Recipe[];
 }
 

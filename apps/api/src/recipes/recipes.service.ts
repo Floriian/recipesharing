@@ -33,15 +33,16 @@ export class RecipesService {
     user: Auth0Payload,
     dto: CreateRecipeDto,
   ): Promise<Recipe> {
-    const { _id } = await this.userService.getUserBySub(user.sub);
+    const userDocument = await this.userService.getUserBySub(user.sub);
 
     const recipe = await this.recipeModel.create({
       ...dto,
       createdAt: Date.now(),
-      user: {
-        _id,
-      },
     });
+
+    userDocument.recipes.push(recipe);
+    userDocument.save();
+
     return await recipe.save();
   }
   async updateRecipe(id: string, dto: UpdateRecipeDto) {

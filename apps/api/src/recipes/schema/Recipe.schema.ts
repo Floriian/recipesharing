@@ -20,9 +20,6 @@ export class Recipe {
 
   @Prop({ required: true })
   createdAt: Date;
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'users' })
-  user: User;
 }
 
 export type RecipeDocument = HydratedDocument<Recipe>;
