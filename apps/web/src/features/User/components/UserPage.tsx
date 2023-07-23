@@ -18,7 +18,7 @@ export function UserPage() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getUserThunk);
+    dispatch(getUserThunk());
   }, [dispatch]);
 
   return (
@@ -38,7 +38,7 @@ export function UserPage() {
         </CardHeader>
         <CardContent>List of created recipes by you.</CardContent>
         <CardFooter>
-          <Button onClick={() => navigate("/user/edit-profile")}>Go</Button>
+          <Button onClick={() => navigate("/user/my-recipes")}>Go</Button>
         </CardFooter>
       </Card>
     </UserLayout>
