@@ -4,6 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { RecipePage } from "@/features/Recipe/components/RecipePage";
 import { ShowRecipe } from "@/features/Recipe/components/ShowRecipe";
 import { UserPage } from "@/features/User/components/UserPage";
+import { UserRecipes } from "@/features/User/components/UserRecipes";
 import { injectStore } from "@/services/bearer.interceptor";
 import { Route, Routes } from "react-router-dom";
 
@@ -21,7 +22,7 @@ function App() {
         <Route path="/user">
           <Route index element={<UserPage />} />
           <Route path="/user/edit-profile" />
-          <Route path="/user/my-recipes" />
+          <Route path="/user/my-recipes" element={<UserRecipes />} />
         </Route>
       </Route>
     </Routes>
