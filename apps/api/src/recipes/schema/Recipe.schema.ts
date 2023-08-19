@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, Model } from 'mongoose';
+import { Ingredient } from 'src/ingredient/schema/Ingredients.schema';
 import { User } from 'src/user/schema/User.schema';
 
 @Schema()
@@ -16,10 +17,10 @@ export class Recipe {
   description: string;
 
   @Prop({ required: true })
-  ingredients: string;
-
-  @Prop({ required: true })
   createdAt: Date;
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient' }] })
+  ingredients: Ingredient[];
 }
 
 export type RecipeDocument = HydratedDocument<Recipe>;

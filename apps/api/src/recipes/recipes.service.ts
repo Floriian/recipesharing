@@ -5,11 +5,13 @@ import { Recipe, RecipeModel } from './schema/Recipe.schema';
 import { RecipeNotFoundException } from './exceptions';
 import { Auth0Payload } from 'src/types';
 import { UserService } from 'src/user/user.service';
+import { IngredientService } from 'src/ingredient/ingredient.service';
 @Injectable()
 export class RecipesService {
   constructor(
     @InjectModel(Recipe.name) private readonly recipeModel: RecipeModel,
     private readonly userService: UserService,
+    private readonly ingredientService: IngredientService,
   ) {}
   async getRecipes(): Promise<Recipe[]> {
     const recipes = await this.recipeModel
@@ -33,10 +35,17 @@ export class RecipesService {
     user: Auth0Payload,
     dto: CreateRecipeDto,
   ): Promise<Recipe> {
+    const { ingredients } = dto;
+
+    const createIngredients = await this.ingredientService.createIngredients(
+      ingredients,
+    );
+
     const userDocument = await this.userService.getUserBySub(user.sub);
 
     const recipe = await this.recipeModel.create({
       ...dto,
+      ingredients: createIngredients,
       createdAt: Date.now(),
     });
 

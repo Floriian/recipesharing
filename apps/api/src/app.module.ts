@@ -6,7 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { RecipesModule } from './recipes/recipes.module';
 import { UserModule } from './user/user.module';
 import { CreateUserMiddleware } from './middlewares/CreateUserMiddleware/CreateUserMiddleware';
-
+import { IngredientModule } from 'src/ingredient/ingredient.module';
 @Module({
   imports: [
     MongooseModule.forRootAsync(mongooseModuleConfig),
@@ -14,6 +14,7 @@ import { CreateUserMiddleware } from './middlewares/CreateUserMiddleware/CreateU
     ConfigModule.forRoot(),
     RecipesModule,
     UserModule,
+    IngredientModule,
   ],
 })
 export class AppModule implements NestModule {
