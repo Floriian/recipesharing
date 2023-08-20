@@ -90,13 +90,15 @@ export function CreateRecipeForm() {
                               form.setValue(`ingredients.${i}.unit`, e as Units)
                             }
                           >
-                            <SelectTrigger className="w-full">
-                              <SelectValue>Unit</SelectValue>
-                            </SelectTrigger>
+                            <FormControl>
+                              <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Unit" />
+                              </SelectTrigger>
+                            </FormControl>
                             <SelectContent>
                               <SelectGroup>
                                 {Object.values(UNITS).map((v) => (
-                                  <SelectItem defaultValue="" value={v} key={v}>
+                                  <SelectItem value={v} key={v}>
                                     {v}
                                   </SelectItem>
                                 ))}
