@@ -39,7 +39,7 @@ export function CreateRecipeForm() {
     },
   });
 
-  const { fields, append, remove, update } = useFieldArray<CreateRecipeDto>({
+  const { fields, append, remove } = useFieldArray<CreateRecipeDto>({
     control: form.control,
     name: "ingredients",
   });
@@ -84,13 +84,11 @@ export function CreateRecipeForm() {
                         </div>
                         <div className="col-span-3 col-start-4">
                           <Select
-                            onValueChange={(e) => {
-                              update(+field.id, { ...field, unit: e as Units });
-                              console.log(e);
-                            }}
-                            defaultValue={field.unit}
                             {...form.register(`ingredients.${i}.unit` as const)}
                             {...field}
+                            onValueChange={(e) =>
+                              form.setValue(`ingredients.${i}.unit`, e as Units)
+                            }
                           >
                             <SelectTrigger className="w-full">
                               <SelectValue>Unit</SelectValue>
@@ -117,7 +115,10 @@ export function CreateRecipeForm() {
                         <Button
                           className="w-full bg-orange-500"
                           type="button"
-                          onClick={() => remove(i)}
+                          onClick={() => {
+                            remove(i);
+                            form.unregister(`ingredients.${i}`);
+                          }}
                           disabled={fields.length <= 1}
                         >
                           Remove ingredient
