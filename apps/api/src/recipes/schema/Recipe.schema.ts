@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, Model } from 'mongoose';
 import { Ingredient } from 'src/ingredient/schema/Ingredients.schema';
-import { User } from 'src/user/schema/User.schema';
 
 @Schema()
 export class Recipe {
