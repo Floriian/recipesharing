@@ -5,10 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Recipe, RecipeSchema } from './schema/Recipe.schema';
 import { UserModule } from 'src/user/user.module';
 import { IngredientModule } from 'src/ingredient/ingredient.module';
-import {
-  Ingredient,
-  IngredientSchema,
-} from 'src/ingredient/schema/Ingredients.schema';
+
 @Module({
   controllers: [RecipesController],
   providers: [RecipesService],
@@ -17,10 +14,6 @@ import {
       {
         name: Recipe.name,
         schema: RecipeSchema,
-      },
-      {
-        name: Ingredient.name,
-        schema: IngredientSchema,
       },
     ]),
     UserModule,

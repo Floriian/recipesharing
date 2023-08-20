@@ -6,7 +6,7 @@ import { RecipeNotFoundException } from './exceptions';
 import { Auth0Payload } from 'src/types';
 import { UserService } from 'src/user/user.service';
 import { IngredientService } from 'src/ingredient/ingredient.service';
-import { Ingredient } from 'src/ingredient/schema/Ingredients.schema';
+
 @Injectable()
 export class RecipesService {
   constructor(
