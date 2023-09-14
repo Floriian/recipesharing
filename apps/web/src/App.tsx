@@ -7,7 +7,7 @@ import { UserPage } from "@/features/User/components/UserPage";
 import { UserRecipes } from "@/features/User/components/UserRecipes";
 import { injectStore } from "@/services/bearer.interceptor";
 import { Route, Routes } from "react-router-dom";
-
+import { CreateRecipePage } from "@/features/Recipe/components/CreateRecipePage";
 function App() {
   injectStore(store);
 
@@ -18,6 +18,7 @@ function App() {
         <Route path="/recipes">
           <Route index element={<RecipePage />} />
           <Route path="/recipes/:id" element={<ShowRecipe />} />
+          <Route path="/recipes/new" element={<CreateRecipePage/>} />
         </Route>
         <Route path="/user">
           <Route index element={<UserPage />} />
